@@ -143,7 +143,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot Flow Example</title>
+    <title>Enhanced Chatbot Example</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -214,28 +214,61 @@
         const lowerMessage = message.toLowerCase();
         let response = "I'm sorry, I didn't understand that. Can you please rephrase?";
 
-        if (lowerMessage.includes('prices')) {
+        // Recognize keywords related to location and phone
+        if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
             response = `Our pricing is as follows:
             - ACC Consultation: $20 - $35
             - Private Consultation: $70 - $90
             - Telehealth Consultation: No charge with ACC.
             Would you like more details?`;
-        } else if (lowerMessage.includes('where are you located')) {
+        } else if (lowerMessage.includes('location') || lowerMessage.includes('where are you') || lowerMessage.includes('located')) {
             response = `We have several convenient locations:
-            - Pakuranga: Lloyd Elsmore Leisure Centre
-            - Flat Bush: 14 Fusion Road
-            - Titirangi: Village Centre
-            - Meadowlands: Cockle Bay Tennis Club.
+            - **Pakuranga**: Lloyd Elsmore Leisure Centre
+            - **Flat Bush**: 14 Fusion Road
+            - **Titirangi**: Village Centre
+            - **Meadowlands**: Cockle Bay Tennis Club
+
             Would you like directions to any location?`;
-        } else if (lowerMessage.includes('how do i cancel')) {
-            response = "You can cancel your appointment by calling us, emailing us, or using the cancellation link provided in your confirmation email.";
-        } else if (lowerMessage.includes('how do i book')) {
+        } else if (lowerMessage.includes('phone') || lowerMessage.includes('contact number')) {
+            response = `You can contact our clinics at the following numbers:
+            - **Pakuranga**: 09 535 1932
+            - **Flat Bush**: 09 265 2323
+            - **Titirangi**: 09 817 7377
+            - **Meadowlands**: 09 534 5990`;
+        } else if (lowerMessage.includes('cancel') || lowerMessage.includes('reschedule')) {
+            response = "You can cancel or reschedule your appointment by calling us, emailing us, or using the cancellation link provided in your confirmation email.";
+        } else if (lowerMessage.includes('book') || lowerMessage.includes('appointment')) {
             response = `You can book an appointment by calling one of our clinics:
-            - Pakuranga: 09 535 1932
-            - Flat Bush: 09 265 2323
-            - Titirangi: 09 817 7377
-            - Meadowlands: 09 534 5990.
+            - **Pakuranga**: 09 535 1932
+            - **Flat Bush**: 09 265 2323
+            - **Titirangi**: 09 817 7377
+            - **Meadowlands**: 09 534 5990
+
             Or book online here: [Book now](https://total-body-physio.au1.cliniko.com).`;
+        } else if (lowerMessage.includes('pakuranga')) {
+            response = `**Pakuranga Clinic**:
+            - Location: Lloyd Elsmore Leisure Centre
+            - Hours: Mon-Thurs 7am - 6pm, Fri 7am - 3pm, Closed on weekends
+            - Phone: 09 535 1932
+            [View on Google Maps](https://goo.gl/maps/examplePakuranga)`;
+        } else if (lowerMessage.includes('flat bush')) {
+            response = `**Flat Bush Clinic**:
+            - Location: 14 Fusion Road
+            - Hours: Mon-Fri 7am - 6pm, Closed on weekends
+            - Phone: 09 265 2323
+            [View on Google Maps](https://goo.gl/maps/exampleFlatBush)`;
+        } else if (lowerMessage.includes('titirangi')) {
+            response = `**Titirangi Clinic**:
+            - Location: Village Centre
+            - Hours: Mon-Fri 7am - 6pm, Closed on weekends
+            - Phone: 09 817 7377
+            [View on Google Maps](https://goo.gl/maps/exampleTitirangi)`;
+        } else if (lowerMessage.includes('meadowlands')) {
+            response = `**Meadowlands Clinic**:
+            - Location: Cockle Bay Tennis Club
+            - Hours: Mon-Fri 7am - 6pm, Closed on weekends
+            - Phone: 09 534 5990
+            [View on Google Maps](https://goo.gl/maps/exampleMeadowlands)`;
         }
 
         displayMessage(response, 'bot');
