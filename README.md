@@ -138,96 +138,109 @@
         <p>&copy; 2024 Total Body Physio. All rights reserved.</p>
     </footer>
 </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Flow Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #chat {
+            width: 400px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #messages {
+            height: 200px;
+            overflow-y: scroll;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        #user-input {
+            width: calc(100% - 22px);
+            padding: 10px;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        .message.user {
+            text-align: right;
+        }
+        .message.bot {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat">
+    <div id="messages">
+        <div class="message bot">Hi there! Welcome to Total Body Physio. How can I help you today?</div>
+    </div>
+    <input type="text" id="user-input" placeholder="Type your message here...">
+</div>
+
+<script>
+    const messagesContainer = document.getElementById('messages');
+    const userInput = document.getElementById('user-input');
+
+    userInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            const message = userInput.value.trim();
+            if (message) {
+                displayMessage(message, 'user');
+                processMessage(message);
+                userInput.value = '';
+            }
+        }
+    });
+
+    function displayMessage(message, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        messageElement.textContent = message;
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function processMessage(message) {
+        const lowerMessage = message.toLowerCase();
+        let response = "I'm sorry, I didn't understand that. Can you please rephrase?";
+
+        if (lowerMessage.includes('prices')) {
+            response = `Our pricing is as follows:
+            - ACC Consultation: $20 - $35
+            - Private Consultation: $70 - $90
+            - Telehealth Consultation: No charge with ACC.
+            Would you like more details?`;
+        } else if (lowerMessage.includes('where are you located')) {
+            response = `We have several convenient locations:
+            - Pakuranga: Lloyd Elsmore Leisure Centre
+            - Flat Bush: 14 Fusion Road
+            - Titirangi: Village Centre
+            - Meadowlands: Cockle Bay Tennis Club.
+            Would you like directions to any location?`;
+        } else if (lowerMessage.includes('how do i cancel')) {
+            response = "You can cancel your appointment by calling us, emailing us, or using the cancellation link provided in your confirmation email.";
+        } else if (lowerMessage.includes('how do i book')) {
+            response = `You can book an appointment by calling one of our clinics:
+            - Pakuranga: 09 535 1932
+            - Flat Bush: 09 265 2323
+            - Titirangi: 09 817 7377
+            - Meadowlands: 09 534 5990.
+            Or book online here: [Book now](https://total-body-physio.au1.cliniko.com).`;
+        }
+
+        displayMessage(response, 'bot');
+    }
+</script>
+
+</body>
 </html>
-<div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; border: 1px solid #ccc; border-radius: 5px; overflow: hidden;">
-       <div id="chat-messages" style="height: 300px; overflow-y: auto; padding: 10px; background-color: #f9f9f9;"></div>
-       <input type="text" id="user-input" placeholder="Type your message..." style="width: 100%; padding: 10px; border: none; border-top: 1px solid #ccc;">
-   </div>
-
-   <script>
-   const chatMessages = document.getElementById('chat-messages');
-   const userInput = document.getElementById('user-input');
-
-   const botResponses = {
-       "hello": "Hello! How can I help you today?",
-       "services": "We offer a range of physiotherapy services including sports injury treatment, rehabilitation, and massage therapy.",
-       "appointment": "To book an appointment, please call us at (123) 456-7890 or use our online booking system.",
-       "location": "We are located at 123 Health Street, Wellness City. You can find directions on our Contact page.",
-       "hours": "Our clinic is open Monday to Friday, 9am to 6pm, and Saturdays from 10am to 2pm."
-   };
-
-   function addMessage(message, isUser) {
-       const messageElem = document.createElement('div');
-       messageElem.textContent = message;
-       messageElem.style.marginBottom = '10px';
-       messageElem.style.padding = '5px';
-       messageElem.style.borderRadius = '5px';
-       messageElem.style.backgroundColor = isUser ? '#e6f2ff' : '#f0f0f0';
-       chatMessages.appendChild(messageElem);
-       chatMessages.scrollTop = chatMessages.scrollHeight;
-   }
-
-   userInput.addEventListener('keypress', function(e) {
-       if (e.key === 'Enter') {
-           const message = userInput.value.toLowerCase();
-           addMessage(userInput.value, true);
-           userInput.value = '';
-
-           let botReply = "I'm sorry, I don't understand that question. Can you try asking about our services, appointments, location, or hours?";
-           for (const [key, value] of Object.entries(botResponses)) {
-               if (message.includes(key)) {
-                   botReply = value;
-                   break;
-               }
-           }
-
-           setTimeout(() => addMessage(botReply, false), 500);
-       }
-   });
-   </script>
-<div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; border: 1px solid #ccc; border-radius: 5px; overflow: hidden;">
-       <div id="chat-messages" style="height: 300px; overflow-y: auto; padding: 10px; background-color: #f9f9f9;"></div>
-       <input type="text" id="user-input" placeholder="Type your message..." style="width: 100%; padding: 10px; border: none; border-top: 1px solid #ccc;">
-   </div>
-
-   <script>
-   const chatMessages = document.getElementById('chat-messages');
-   const userInput = document.getElementById('user-input');
-
-   const botResponses = {
-       "hello": "Hello! How can I help you today?",
-       "services": "We offer a range of physiotherapy services including sports injury treatment, rehabilitation, and massage therapy.",
-       "appointment": "To book an appointment, please call us at (123) 456-7890 or use our online booking system.",
-       "location": "We are located at 123 Health Street, Wellness City. You can find directions on our Contact page.",
-       "hours": "Our clinic is open Monday to Friday, 9am to 6pm, and Saturdays from 10am to 2pm."
-   };
-
-   function addMessage(message, isUser) {
-       const messageElem = document.createElement('div');
-       messageElem.textContent = message;
-       messageElem.style.marginBottom = '10px';
-       messageElem.style.padding = '5px';
-       messageElem.style.borderRadius = '5px';
-       messageElem.style.backgroundColor = isUser ? '#e6f2ff' : '#f0f0f0';
-       chatMessages.appendChild(messageElem);
-       chatMessages.scrollTop = chatMessages.scrollHeight;
-   }
-
-   userInput.addEventListener('keypress', function(e) {
-       if (e.key === 'Enter') {
-           const message = userInput.value.toLowerCase();
-           addMessage(userInput.value, true);
-           userInput.value = '';
-
-           let botReply = "I'm sorry, I don't understand that question. Can you try asking about our services, appointments, location, or hours?";
-           for (const [key, value] of Object.entries(botResponses)) {
-               if (message.includes(key)) {
-                   botReply = value;
-                   break;
-               }
-           }
-
-           setTimeout(() => addMessage(botReply, false), 500);
-       }
-   });
-   </script>
