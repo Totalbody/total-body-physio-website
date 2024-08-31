@@ -71,6 +71,74 @@
     </footer>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Body Physio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #35a79c;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Total Body Physio</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <main>
+        <h2>Welcome to Total Body Physio</h2>
+        <p>We are dedicated to helping you achieve optimal physical health and well-being through expert physiotherapy services.</p>
+        <p>Our team of experienced physiotherapists is here to guide you on your journey to recovery and improved physical function.</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Total Body Physio. All rights reserved.</p>
+    </footer>
+</body>
+</html>
 <div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; border: 1px solid #ccc; border-radius: 5px; overflow: hidden;">
        <div id="chat-messages" style="height: 300px; overflow-y: auto; padding: 10px; background-color: #f9f9f9;"></div>
        <input type="text" id="user-input" placeholder="Type your message..." style="width: 100%; padding: 10px; border: none; border-top: 1px solid #ccc;">
