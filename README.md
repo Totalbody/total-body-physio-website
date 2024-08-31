@@ -51,7 +51,7 @@
 </head>
 <body>
     <header>
-        <h1>Your Physiotherapy Clinic</h1>
+        <h1>Total Body Physio</h1>
     </header>
     <nav>
         <ul>
