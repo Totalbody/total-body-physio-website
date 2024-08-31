@@ -71,3 +71,49 @@
     </footer>
 </body>
 </html>
+<div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 300px; border: 1px solid #ccc; border-radius: 5px; overflow: hidden;">
+       <div id="chat-messages" style="height: 300px; overflow-y: auto; padding: 10px; background-color: #f9f9f9;"></div>
+       <input type="text" id="user-input" placeholder="Type your message..." style="width: 100%; padding: 10px; border: none; border-top: 1px solid #ccc;">
+   </div>
+
+   <script>
+   const chatMessages = document.getElementById('chat-messages');
+   const userInput = document.getElementById('user-input');
+
+   const botResponses = {
+       "hello": "Hello! How can I help you today?",
+       "services": "We offer a range of physiotherapy services including sports injury treatment, rehabilitation, and massage therapy.",
+       "appointment": "To book an appointment, please call us at (123) 456-7890 or use our online booking system.",
+       "location": "We are located at 123 Health Street, Wellness City. You can find directions on our Contact page.",
+       "hours": "Our clinic is open Monday to Friday, 9am to 6pm, and Saturdays from 10am to 2pm."
+   };
+
+   function addMessage(message, isUser) {
+       const messageElem = document.createElement('div');
+       messageElem.textContent = message;
+       messageElem.style.marginBottom = '10px';
+       messageElem.style.padding = '5px';
+       messageElem.style.borderRadius = '5px';
+       messageElem.style.backgroundColor = isUser ? '#e6f2ff' : '#f0f0f0';
+       chatMessages.appendChild(messageElem);
+       chatMessages.scrollTop = chatMessages.scrollHeight;
+   }
+
+   userInput.addEventListener('keypress', function(e) {
+       if (e.key === 'Enter') {
+           const message = userInput.value.toLowerCase();
+           addMessage(userInput.value, true);
+           userInput.value = '';
+
+           let botReply = "I'm sorry, I don't understand that question. Can you try asking about our services, appointments, location, or hours?";
+           for (const [key, value] of Object.entries(botResponses)) {
+               if (message.includes(key)) {
+                   botReply = value;
+                   break;
+               }
+           }
+
+           setTimeout(() => addMessage(botReply, false), 500);
+       }
+   });
+   </script>
