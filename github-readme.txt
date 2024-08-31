@@ -15,7 +15,7 @@ This repository contains the code for my physiotherapy clinic website.
 
 ## Deployment
 
-This site is deployed using GitHub Pages. You can view it at [your-github-pages-url-here].
+This site is deployed using GitHub Pages. You can view it at [https://github.com/Totalbody/total-body-physio-website].
 
 ## Future Plans
 
